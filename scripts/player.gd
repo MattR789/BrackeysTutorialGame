@@ -7,6 +7,8 @@ const JUMP_VELOCITY = -300.0
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 @onready var animated_sprite_2D = $AnimatedSprite2D
+@onready var jump = $jump
+@onready var walking = $walking
 
 
 func _physics_process(delta):
@@ -43,5 +45,9 @@ func _physics_process(delta):
 			animated_sprite_2D.play("running")
 	else:
 		animated_sprite_2D.play("jumping")
-
 	move_and_slide()
+func _input(event):
+	if event.is_action_pressed("Jump"):
+		jump.play()
+	
+	
